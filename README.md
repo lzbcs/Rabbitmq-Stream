@@ -1,0 +1,2 @@
+# Rabbitmq-Stream
+该项目的目的是将从移动机器人上获取雷达数据传送到rabbitmq，SpringBoot程序用于获取消息展示并存储到Hbase数据库
