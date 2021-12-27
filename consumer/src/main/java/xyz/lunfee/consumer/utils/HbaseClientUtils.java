@@ -39,24 +39,22 @@ public class HbaseClientUtils {
      **/
 
     public static void createTable(String tableName, String colFamily) throws IOException {
-        try {
-            if (isTableExists(tableName)) {
-                log.warn("Table [{}] exists", tableName);
-                return;
-            }
-            TableName table = TableName.valueOf(tableName);
 
-            ColumnFamilyDescriptor cfd = ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(colFamily))
-                    // 设置数据版本数量
-                    .setMaxVersions(1)
-                    // 设置副本数，默认是3
-                    .setDFSReplication((short) 2)
-                    .build();
-            TableDescriptor tableDes = TableDescriptorBuilder.newBuilder(table).setColumnFamily(cfd).build();
-            admin.createTable(tableDes);
-        } finally {
-            close();
+        if (isTableExists(tableName)) {
+            log.warn("Table [{}] exists", tableName);
+            return;
         }
+        TableName table = TableName.valueOf(tableName);
+
+        ColumnFamilyDescriptor cfd = ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(colFamily))
+                // 设置数据版本数量
+                .setMaxVersions(1)
+                // 设置副本数，默认是3
+                .setDFSReplication((short) 2)
+                .build();
+        TableDescriptor tableDes = TableDescriptorBuilder.newBuilder(table).setColumnFamily(cfd).build();
+        admin.createTable(tableDes);
+
 
     }
 
@@ -126,18 +124,17 @@ public class HbaseClientUtils {
      **/
     public static void addData(String tableName, String rowKey, String columnFamily, String column, String value) {
         if (!isTableExists(tableName)) {
-            log.warn("Table [{}] does not exist!");
+            log.warn("Table [{}] does not exist!", tableName);
             return;
         }
         try {
-            Table table = connection.getTable(TableName.valueOf(tableName));
             Put put = new Put(Bytes.toBytes(rowKey));
             put.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(column), Bytes.toBytes(value));
+            Table table = connection.getTable(TableName.valueOf(tableName));
             table.put(put);
-            table.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             close();
         }
 
@@ -157,8 +154,6 @@ public class HbaseClientUtils {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            close();
         }
     }
 
