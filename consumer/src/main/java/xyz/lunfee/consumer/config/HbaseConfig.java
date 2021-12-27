@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -35,5 +36,10 @@ public class HbaseConfig {
     @Bean
     public Connection getConnection() throws IOException {
         return ConnectionFactory.createConnection(configuration());
+    }
+
+    @Bean
+    public HBaseAdmin getAdmin() throws IOException {
+        return (HBaseAdmin) getConnection().getAdmin();
     }
 }
