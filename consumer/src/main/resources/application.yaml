@@ -11,12 +11,12 @@ spring:
       routing-key: laser.*
 #Cloud流式编程中，Consumer 自动监听 方法名-in-0, 因此将其与 rabbitmq 对应的 exchange 绑定
 #group 定义消费者组，避免匿名队列的产生
-  cloud:
-    stream:
-      bindings:
-        onReceive-in-0:
-          destination: laser-topic
-          group: consumer
+#  cloud:
+#    stream:
+#      bindings:
+#        onReceive-in-0:
+#          destination: laser-topic
+#          group: consumer
 
 server:
   port: 80

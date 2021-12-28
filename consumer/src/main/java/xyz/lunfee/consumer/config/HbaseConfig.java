@@ -1,6 +1,6 @@
 package xyz.lunfee.consumer.config;
 
-import org.apache.hadoop.conf.Configuration;
+import org.springframework.context.annotation.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @author lunfee
  * @create 2021/12/26-18:12
  */
-@org.springframework.context.annotation.Configuration
+@Configuration
 @EnableConfigurationProperties(HbaseProperties.class)
 public class HbaseConfig {
     private final HbaseProperties prop;
@@ -24,10 +24,11 @@ public class HbaseConfig {
     public HbaseConfig(HbaseProperties properties) {
         this.prop = properties;
     }
-
+    //整个配置过程
+    //HbaseProperties -->  org.apache.hadoop.conf.Configuration --> Connection --> HBaseAdmin
     @Bean
-    public Configuration configuration() {
-        Configuration configuration = HBaseConfiguration.create();
+    public org.apache.hadoop.conf.Configuration configuration() {
+        org.apache.hadoop.conf.Configuration configuration = HBaseConfiguration.create();
         Map<String, String> config = prop.getConfig();
         config.forEach(configuration::set);
         return configuration;

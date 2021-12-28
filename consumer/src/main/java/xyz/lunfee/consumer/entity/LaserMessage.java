@@ -7,9 +7,9 @@ import lombok.Data;
  * @create 2021/12/25-16:14
  */
 @Data
-public class LaserScan {
-    double min;
-    double max;
-    double increase;
+public class LaserMessage {
+    long secs;
+    String nsecs;
+    double[] intensities;
     double[] ranges;
 }

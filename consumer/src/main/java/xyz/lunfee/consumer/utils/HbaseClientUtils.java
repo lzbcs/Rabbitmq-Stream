@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -25,7 +24,9 @@ public class HbaseClientUtils {
 
     private static HBaseAdmin admin;
 
-
+    //构造器注入
+    //其中admin 和 connection 均为单例
+    //因此非必须情况不要关闭 连接
     public HbaseClientUtils(Connection connection, HBaseAdmin admin) {
         this.admin = admin;
         this.connection = connection;
@@ -93,8 +94,6 @@ public class HbaseClientUtils {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
     }
 
@@ -112,7 +111,6 @@ public class HbaseClientUtils {
         for (TableName tableName : tableNames) {
             tables.add(tableName.getNameAsString());
         }
-        close();
         return tables;
     }
 
@@ -159,7 +157,7 @@ public class HbaseClientUtils {
 
     /*
      * @Author lunfee
-     * @Description 关闭资源连接
+     * @Description 关闭资源连接，代码中时单例模式，不需要关闭资源
      * @Date 10:33 2021/12/27
      * @Param []
      * @return void

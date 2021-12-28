@@ -3,8 +3,7 @@ package xyz.lunfee.processor.component;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 /**
  * @author lunfee
@@ -12,14 +11,11 @@ import java.util.function.Function;
  */
 @Slf4j
 @Component
-public class ValueProcessor {
+public class LaserQuery {
     @Bean
-    public Function<String, String> convertToUppercase() {
+    public Consumer<String> query() {
         return (value) -> {
             log.info("Received {}", value);
-            String upperCaseValue = value.toUpperCase();
-            log.info("Sending {}", upperCaseValue);
-            return upperCaseValue;
         };
     }
 }
