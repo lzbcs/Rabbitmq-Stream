@@ -138,8 +138,14 @@ public class HbaseClientUtils {
 
     }
 
-    public static void addData(String intensities, String rowKey, String range, String range1, String range2, String intensities1, String intensity) {
-    }
+    /*
+    * @Author lunfee
+    * @Description 一个列族下多个列数据插入
+    * @Date 18:45 2021/12/28
+    * @Param [java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String]
+    * @return void
+    **/
+
 
     /*
      * @Author lunfee
