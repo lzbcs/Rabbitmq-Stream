@@ -138,6 +138,9 @@ public class HbaseClientUtils {
 
     }
 
+    public static void addData(String intensities, String rowKey, String range, String range1, String range2, String intensities1, String intensity) {
+    }
+
     /*
      * @Author lunfee
      * @Description 判断表是否存在
@@ -178,4 +181,6 @@ public class HbaseClientUtils {
             }
         }
     }
+
+
 }
