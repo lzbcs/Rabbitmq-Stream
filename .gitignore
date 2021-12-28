@@ -33,3 +33,4 @@ build/
 
 ### MAC OS ###
 *.DS_Store
+./producer/entity/__pycache__/
