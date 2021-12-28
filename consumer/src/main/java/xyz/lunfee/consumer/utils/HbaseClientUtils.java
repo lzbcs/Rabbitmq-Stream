@@ -15,6 +15,7 @@ import java.util.List;
  * @author lunfee
  * @create 2021/12/26-18:21
  */
+
 @Component
 @Slf4j
 public class HbaseClientUtils {
@@ -122,7 +123,7 @@ public class HbaseClientUtils {
      * @Param [java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String]
      * @return void
      **/
-    public static void addData(String tableName, String rowKey, String columnFamily, String column, String value) {
+    public synchronized static void addData(String tableName, String rowKey, String columnFamily, String column, String value) {
         if (!isTableExists(tableName)) {
             log.warn("Table [{}] does not exist!", tableName);
             return;
@@ -132,10 +133,9 @@ public class HbaseClientUtils {
             put.addColumn(Bytes.toBytes(columnFamily), Bytes.toBytes(column), Bytes.toBytes(value));
             Table table = connection.getTable(TableName.valueOf(tableName));
             table.put(put);
+            table.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
 
     }
