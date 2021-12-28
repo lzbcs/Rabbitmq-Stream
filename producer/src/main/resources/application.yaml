@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    stream:
-      bindings:
-        lasers-out-0:                    # binding name
-          destination: lasers-topic      # topic name
-          contentType: application/json
-  rabbitmq:
-    host: 101.43.56.164
