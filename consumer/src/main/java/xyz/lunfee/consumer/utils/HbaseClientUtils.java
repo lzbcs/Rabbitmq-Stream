@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -26,10 +27,10 @@ public class HbaseClientUtils {
 
     //构造器注入
     //其中admin 和 connection 均为单例
-    //因此非必须情况不要关闭 连接
+    //因此非必须情况不要关闭连接
     public HbaseClientUtils(Connection connection, HBaseAdmin admin) {
-        this.admin = admin;
-        this.connection = connection;
+        HbaseClientUtils.admin = admin;
+        HbaseClientUtils.connection = connection;
     }
     /*
      * @Author lunfee
@@ -132,19 +133,32 @@ public class HbaseClientUtils {
             Table table = connection.getTable(TableName.valueOf(tableName));
             table.put(put);
             table.close();
+            log.info("Data with Rowkey [{}] was added to database", rowKey);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    /*
-    * @Author lunfee
-    * @Description 一个列族下多个列数据插入
-    * @Date 18:45 2021/12/28
-    * @Param [java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String]
-    * @return void
-    **/
+
+    public static boolean removeTable(String tbn){
+        if(!isTableExists(tbn)){
+            log.warn("Table dose not exist!");
+            return false;
+        }
+        else {
+            try {
+                admin.disableTable(TableName.valueOf(tbn));
+                admin.deleteTable(TableName.valueOf(tbn));
+                log.info("Table was deleted successfully");
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
 
 
     /*

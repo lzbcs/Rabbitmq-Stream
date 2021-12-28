@@ -41,8 +41,8 @@ public class ReciveLaserTopic {
         String rowKey = "L" + mdhms + ms;
         String range = JSON.toJSONString(ranges);
         String intensity = JSON.toJSONString(intensities);
-        HbaseClientUtils.addData("rangesandintensities", rowKey, "laser", "range", range);
-        HbaseClientUtils.addData("rangesandintensities", rowKey, "laser", "intensity", intensity);
+        HbaseClientUtils.addData("laserscan", rowKey, "laser", "range", range);
+        HbaseClientUtils.addData("laserscan", rowKey, "laser", "intensity", intensity);
     }
 
 
