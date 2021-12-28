@@ -25,7 +25,7 @@ public class ReciveLaserTopic {
 
     @RabbitListener(queues = "laser.topic")
     public void receiveMessage(String laser) {
-//        log.info("Receive a new message"+laser);
+        log.info("Receive a new message");
         LaserMessage laserMessage = JSON.parseObject(laser, LaserMessage.class);
         String ymdhms = TimestampUtils.stampToDate((int) laserMessage.getSecs());
         //由 laserScan的yyyymmddhhMMss --> mmddhhMMss
