@@ -11,6 +11,7 @@
     <modules>
         <module>hbasetest</module>
         <module>consumer</module>
+        <module>laserclient</module>
     </modules>
 
     <properties>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.lunfee.consumer.dao.HbaseDAO;
+import xyz.lunfee.consumer.entity.Laser;
 import xyz.lunfee.consumer.service.LaserService;
 import xyz.lunfee.consumer.utils.HbaseClientUtils;
 
@@ -67,9 +68,9 @@ public class LaserController {
 
     @GetMapping("/queryByRowkey/{tableName}/{rowkey}")
     @ApiOperation("query with rowkey")
-    public ResponseEntity<String> query(@PathVariable String tableName, @PathVariable String rowkey){
+    public ResponseEntity<Laser> query(@PathVariable String tableName, @PathVariable String rowkey){
         Result result = HbaseDAO.getRow(tableName, rowkey);
-        laserService.messageToLaser(result);
-        return ResponseEntity.ok("+++++++=");
+        Laser laser = laserService.messageToLaser(result);
+        return ResponseEntity.ok(laser);
     }
 }

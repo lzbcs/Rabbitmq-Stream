@@ -8,6 +8,6 @@ import lombok.Data;
  */
 @Data
 public class Laser {
-    double[] ranges;
-    double[] intensities;
+    String ranges;
+    String intensities;
 }

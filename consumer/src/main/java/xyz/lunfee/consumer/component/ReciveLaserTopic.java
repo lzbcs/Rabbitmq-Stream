@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+import xyz.lunfee.consumer.dao.HbaseDAO;
 import xyz.lunfee.consumer.entity.LaserMessage;
 import xyz.lunfee.consumer.utils.HbaseClientUtils;
 import xyz.lunfee.consumer.utils.TimestampUtils;
@@ -37,8 +38,8 @@ public class ReciveLaserTopic {
         String rowKey = "L" + mdhms + ms;
         String range = JSON.toJSONString(ranges);
         String intensity = JSON.toJSONString(intensities);
-        HbaseClientUtils.addData("laserscan", rowKey, "laser", "range", range);
-        HbaseClientUtils.addData("laserscan", rowKey, "laser", "intensity", intensity);
+//        HbaseDAO.addData("laserscan", rowKey, "laser", "range", range);
+//        HbaseDAO.addData("laserscan", rowKey, "laser", "intensity", intensity);
     }
 
 

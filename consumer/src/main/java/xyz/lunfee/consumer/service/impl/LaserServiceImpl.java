@@ -15,10 +15,9 @@ public class LaserServiceImpl implements LaserService {
     public Laser messageToLaser(Result result) {
         Laser laser = new Laser();
         String laserrange = Bytes.toString(result.getValue(Bytes.toBytes("laser"), Bytes.toBytes("range")));
-
         String laserintensity = Bytes.toString(result.getValue(Bytes.toBytes("laser"), Bytes.toBytes("intensity")));
-//        laser.setRanges();
-//        laser.setIntensities();
+        laser.setRanges(laserrange);
+        laser.setIntensities(laserintensity);
         return laser;
     }
 }
