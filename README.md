@@ -31,3 +31,11 @@ hbase:
 
 解决方法
 > zookeeper.quorum 必须配置servername 必须要在hosts文件中设置其与远程服务器之间的映射
+
+- git问题
+
+> 更新gitignore时远程仓库不能同步，git下来的module不能识别，自己的包报红
+
+--- 
+
+> git清理缓存，pom.xml新加module，idea清理缓存

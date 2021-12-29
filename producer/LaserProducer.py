@@ -1,7 +1,5 @@
 import time
-import sys
-sys.path.append("../")
-from entity.LaserMessage import LaserMessage
+from LaserMessage import LaserMessage
 import pika
 import json
 

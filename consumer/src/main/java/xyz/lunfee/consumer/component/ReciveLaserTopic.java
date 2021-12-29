@@ -9,8 +9,6 @@ import xyz.lunfee.consumer.entity.LaserMessage;
 import xyz.lunfee.consumer.utils.HbaseClientUtils;
 import xyz.lunfee.consumer.utils.TimestampUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author lunfee
@@ -20,8 +18,6 @@ import java.util.Date;
 @Component
 public class ReciveLaserTopic {
 
-
-    HbaseClientUtils hbaseClientUtils;
 
     @RabbitListener(queues = "laser.topic")
     public void receiveMessage(String laser) {
@@ -41,8 +37,8 @@ public class ReciveLaserTopic {
         String rowKey = "L" + mdhms + ms;
         String range = JSON.toJSONString(ranges);
         String intensity = JSON.toJSONString(intensities);
-//        HbaseClientUtils.addData("laserscan", rowKey, "laser", "range", range);
-//        HbaseClientUtils.addData("laserscan", rowKey, "laser", "intensity", intensity);
+        HbaseClientUtils.addData("laserscan", rowKey, "laser", "range", range);
+        HbaseClientUtils.addData("laserscan", rowKey, "laser", "intensity", intensity);
     }
 
 
