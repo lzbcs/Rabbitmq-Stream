@@ -31,6 +31,7 @@ public class LaserController {
         if (comment.getToUser().isEmpty()) {
             //封装@SendTo注解
             //需要配置Websocket
+            //js subsribe the topic  /topic/comments
             simpMessagingTemplate.convertAndSend("/topic/comments", chatComment);
         } else {
             simpMessagingTemplate.convertAndSendToUser(comment.getToUser(), "/topic/comments", chatComment);

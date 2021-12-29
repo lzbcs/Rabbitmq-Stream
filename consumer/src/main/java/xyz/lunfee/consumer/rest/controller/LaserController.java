@@ -1,4 +1,4 @@
-package xyz.lunfee.consumer.controller;
+package xyz.lunfee.consumer.rest.controller;
 
 import io.swagger.annotations.Api;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @author lunfee
  * @create 2021/12/25-17:12
  */
-@RestController
+@RestController("/api")
 
 @RequiredArgsConstructor
 @Api(tags = "HBase Api")
