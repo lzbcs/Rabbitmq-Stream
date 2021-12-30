@@ -23,6 +23,11 @@ public class LaserController {
     public String getLaser() {
         return "laser";
     }
+
+    @GetMapping("/lunfee")
+    public String getLunfee() {
+        return "lunfee";
+    }
 //    收到信息自动响应
     @MessageMapping("/chat")
     public void addChatComment(@Payload Comment comment) {

@@ -31,7 +31,7 @@ public class SpringFoxConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(
-                        "xyz.lunfee.consumer.controller"))
+                        "xyz.lunfee.consumer.rest.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

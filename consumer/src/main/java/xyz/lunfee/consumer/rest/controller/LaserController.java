@@ -10,20 +10,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.lunfee.consumer.dao.HbaseDAO;
 import xyz.lunfee.consumer.entity.Laser;
+import xyz.lunfee.consumer.entity.LaserRanges;
 import xyz.lunfee.consumer.service.LaserService;
 import xyz.lunfee.consumer.utils.HbaseClientUtils;
 
+import javax.servlet.http.HttpServletResponse;
+import java.net.http.HttpResponse;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 /**
  * @author lunfee
  * @create 2021/12/25-17:12
  */
-@RestController("/api")
-
+@RestController
+@RequestMapping(("/api"))
 @RequiredArgsConstructor
 @Api(tags = "HBase Api")
 public class LaserController {
@@ -68,9 +70,18 @@ public class LaserController {
 
     @GetMapping("/queryByRowkey/{tableName}/{rowkey}")
     @ApiOperation("query with rowkey")
-    public ResponseEntity<Laser> query(@PathVariable String tableName, @PathVariable String rowkey){
+    public ResponseEntity<LaserRanges> query(@PathVariable String tableName, @PathVariable String rowkey){
         Result result = HbaseDAO.getRow(tableName, rowkey);
-        Laser laser = laserService.messageToLaser(result);
-        return ResponseEntity.ok(laser);
+        LaserRanges laserRanges = laserService.messageToLaserRanges(result);
+        return ResponseEntity.ok(laserRanges);
+    }
+    @GetMapping("/example")
+    @ApiOperation("Example data api")
+    @CrossOrigin
+    public List<List<Double>> get(){
+        Result result = HbaseDAO.getRow("laserscan", "L1228141721336");
+        LaserRanges laserRanges = laserService.messageToLaserRanges(result);
+//        response.setHeader();
+        return laserService.laserrangeToPointCloud(laserRanges);
     }
 }
