@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Controller
 public class LaserController {
 
-    private final SimpMessagingTemplate simpMessagingTemplate;
+    final SimpMessagingTemplate simpMessagingTemplate;
 
 
     @GetMapping("/")

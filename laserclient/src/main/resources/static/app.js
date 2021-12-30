@@ -1,4 +1,15 @@
 let stompClient = null;
+//初始化表格
+var chartDom = document.getElementById('ajaxChart');
+var myChart = echarts.init(chartDom);
+var option;
+var chartdata;
+//显示加载
+
+
+myChart.showLoading();
+
+
 
 function connect() {
     // 建立连接对象（还未发起连接）
@@ -17,25 +28,43 @@ function connect() {
 
             //subscribe(destination url, callback[, headers])
             //订阅相应的URL，发送一个 SUBSCRIBE 帧，然后才能不断接收来自服务器的推送消息；
-            stompClient.subscribe('/topic/prices', function (price) {
-                const priceBody = JSON.parse(price.body)
-                const priceValue = priceBody.value
-                const priceTimestamp = priceBody.timestamp
 
-                if (prevPriceValue == null) {
-                    prevPriceValue = priceValue
-                }
-                const priceVar = priceValue - prevPriceValue
-                prevPriceValue = priceValue
+            //开启 websocket 监听
+            //可视化界面的动态更新 在订阅到新的消息之后
+            stompClient.subscribe('/topic/laserranges', function (laserRange) {
+                const data = JSON.parse(laserRange.body)
 
-                $('#currentPrice').text(Number(priceValue).toFixed(2))
-                $('#variation').text((priceVar > 0 ? "+" : "") + Number(priceVar).toFixed(2))
+                // console.log(data)
+                chartdata = []
+                data.map(function (x){
+                    chartdata.push(x)
+                })
+                // console.log(chartdata)
+                option = {
+                    xAxis: {},
+                    yAxis: {},
+                    series: [
+                        {
+                            symbolSize: 4,
+                            data: chartdata,
+                            type: 'scatter'
+                        }
+                    ]
+                };
+                //隐藏加载
+                myChart.hideLoading();
+                myChart.setOption(option);
 
-                const row = '<tr><td>'+Number(priceValue).toFixed(2)+'</td><td>'+moment(priceTimestamp).format('YYYY-MM-DD HH:mm:ss')+'</td></tr>'
-                if ($('#priceList tr').length > 20) {
-                    $('#priceList tr:last').remove()
-                }
-                $('#priceList').find('tbody').prepend(row)
+
+
+                // $('#currentPrice').text(Number(priceValue).toFixed(2))
+                // $('#variation').text((priceVar > 0 ? "+" : "") + Number(priceVar).toFixed(2))
+
+                // const row = '<tr><td>'+Number(priceValue).toFixed(2)+'</td><td>'+moment(priceTimestamp).format('YYYY-MM-DD HH:mm:ss')+'</td></tr>'
+                // if ($('#priceList tr').length > 20) {
+                //     $('#priceList tr:last').remove()
+                // }
+                // $('#priceList').find('tbody').prepend(row)
             })
 
             stompClient.subscribe('/topic/comments', function (chatComment) {

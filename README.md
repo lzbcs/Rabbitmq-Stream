@@ -37,7 +37,7 @@ hbase:
 
 > 更新gitignore时远程仓库不能同步，git下来的module不能识别，自己的包报红
 
-
+解决方法
 > git清理缓存，pom.xml新加module，idea清理缓存
 
 --- 
@@ -48,4 +48,28 @@ hbase:
 
 ---
 
-- 
+- 跨域问题
+
+> 前端访问AJAX访问后端接口时报 CROS error
+
+解决方法
+
+> https://blog.csdn.net/tg928600774/article/details/80325040
+
+---
+
+- javascript 执行顺序问题
+
+> (function() {})，即 $(document).ready(function()), 在DOM 加载完毕之后执行。即页面所有的 html 标签（包括图片等）都加载完了，即浏览器已经响应完了，加载完了，全部展现到浏览器界面上了。
+
+![DOM tree](https://www.w3schools.com/js/pic_htmltree.gif)
+
+> DOM在第一次页面加载完毕后，就在内存里了，无论后面怎么通过ajax的方式去局部修改html页面，都只是对内存中的DOM树进行修改，而DOM在第一次页面加载完毕后就已经加载完毕了。
+> 所以后面 js文件（动态加载或者 head 中加载）再使用到 $(function() {}) 函数肯定会执行的。
+
+
+---
+
+- 无法引用 外部 js包
+
+> 死活引用不了，最后发现要在html中js引用需要有顺序，或者放在头部应该也可以

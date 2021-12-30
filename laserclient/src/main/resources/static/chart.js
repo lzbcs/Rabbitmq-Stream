@@ -11,7 +11,9 @@ myChart.showLoading();
 
 $.ajax({
     url:"http://localhost:8080/api/example",
-    async:false,
+    //true 同步, ajax 异步才能不“阻塞”，避免界面假死
+    //比如只由在异步条件下，才会走loading...
+    async:true,
     cache:false,
 
     success:function (data){
