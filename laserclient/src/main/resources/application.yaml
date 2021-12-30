@@ -1,6 +1,5 @@
 server:
   port: 8081
-
 #rabbitma 配置
 spring:
   rabbitmq:

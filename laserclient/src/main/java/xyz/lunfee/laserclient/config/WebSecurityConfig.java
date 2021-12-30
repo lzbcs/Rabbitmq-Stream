@@ -26,10 +26,126 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles(USER)
 
                 .and()
-
                 .withUser("user2")
                 .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("liuyunfei")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("yangfan")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("xuzhiqiang")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("hongyue")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("cuizhiwei")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("fenghaobo")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("jixu")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("zhengyuxing")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("lili")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("liqinru")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("liqingyun")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("nilian")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("zuizhaobini")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("tengzhilin")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("liucong")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("zhuminxin")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+
+                .and()
+
+                .withUser("xiaofeng")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+                .and()
+
+                .withUser("pengsha")
+                .password(passwordEncoder().encode("123"))
+                .roles(USER)
+
+                .and()
+
+                .withUser("xujinan")
+                .password(passwordEncoder().encode("123"))
                 .roles(USER);
+
+
+
     }
 
     @Override
