@@ -3,3 +3,19 @@
 
 --- 
 
+##nginx
+
+> https://juejin.cn/post/6844904129987526663
+
+- 启动与关闭
+
+  ./nginx  
+  ./nginx -s stop 
+  ./nginx -s quit  
+  ./nginx -s reload  
+  ps aux|grep nginx
+
+- 原理
+
+>
+  
