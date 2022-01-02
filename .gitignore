@@ -39,5 +39,5 @@ build/
 /laserclient/src/main/resources/static/stomp.min.js
 
 
-/producer/LaserProducer.py
-/producer/LaserMessage.py
+!/producer/LaserMessage.py
+!/producer/LaserProducer.py
