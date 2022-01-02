@@ -37,3 +37,5 @@ build/
 /laserclient/src/main/resources/static/materialize.min.js
 /laserclient/src/main/resources/static/moment.min.js
 /laserclient/src/main/resources/static/stomp.min.js
+!/producer/LaserProducer.py
+!/producer/LaserMessage.py
