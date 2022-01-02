@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+/laserclient/src/main/resources/static/echarts.js
+/laserclient/src/main/resources/static/sockjs.min.js
+/laserclient/src/main/resources/static/jquery.min.js
+/laserclient/src/main/resources/static/materialize.min.js
+/laserclient/src/main/resources/static/moment.min.js
+/laserclient/src/main/resources/static/stomp.min.js

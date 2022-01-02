@@ -28,6 +28,7 @@ import java.util.Map;
 @RequestMapping(("/api"))
 @RequiredArgsConstructor
 @Api(tags = "HBase Api")
+@CrossOrigin
 public class LaserController {
     HbaseDAO hbaseDAO;
     HbaseClientUtils hbaseClientUtils;
@@ -77,7 +78,7 @@ public class LaserController {
     }
     @GetMapping("/example")
     @ApiOperation("Example data api")
-    @CrossOrigin
+
     public List<List<Double>> get(){
         Result result = HbaseDAO.getRow("laserscan", "L1228141721336");
         LaserRanges laserRanges = laserService.messageToLaserRanges(result);

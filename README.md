@@ -80,3 +80,36 @@ hbase:
 
 > 原因是挂梯子的时候可以加载一些js包,但是一般人不挂梯子，访问的时候控制台会报404
 > 最好把所有的依赖全部down下来，然后前后端分离。
+
+- nginx 动静分离
+
+> echarts.js 等静态资源打包占用太多空间，故使用nginx动静分离，也方便之后集群部署
+
+```shell
+http {
+  map $http_upgrade $connection_upgrade {
+      default upgrade;
+      '' close;
+  }
+  server {
+    listen 8080;
+    server_name localhost;   
+    location / {
+      proxy_pass http://localhost:8082;
+      #websocket 配置
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $connection_upgrade;
+      proxy_set_header Origin "";
+    }
+    #静态资源拦截配置
+    location ~ .*\.(js|gif)$ {
+      root /home/lunfee/static/ui-js;
+    }
+        
+  }
+
+
+}
+
+```
