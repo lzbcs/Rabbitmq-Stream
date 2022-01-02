@@ -31,6 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
 /laserclient/src/main/resources/static/echarts.js
 /laserclient/src/main/resources/static/sockjs.min.js
 /laserclient/src/main/resources/static/jquery.min.js
@@ -39,5 +40,5 @@ build/
 /laserclient/src/main/resources/static/stomp.min.js
 
 
-!/producer/LaserMessage.py
-!/producer/LaserProducer.py
+/producer/LaserMessage.py
+/producer/LaserProducer.py
