@@ -21,7 +21,7 @@ public class RabbitMqConfig {
 
     @Bean(name="lasertopic")
     public Queue queueMessages(){
-        return new Queue("laser.topic");
+        return new Queue("laser.consumer");
     }
 
     @Bean

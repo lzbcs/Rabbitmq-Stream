@@ -20,7 +20,7 @@ import xyz.lunfee.consumer.utils.TimestampUtils;
 public class ReciveLaserTopic {
 
 
-    @RabbitListener(queues = "laser.topic")
+    @RabbitListener(queues = "laser.consumer")
     public void receiveMessage(String laser) {
         log.info("Receive a new message");
         LaserMessage laserMessage = JSON.parseObject(laser, LaserMessage.class);
@@ -38,8 +38,8 @@ public class ReciveLaserTopic {
         String rowKey = "L" + mdhms + ms;
         String range = JSON.toJSONString(ranges);
         String intensity = JSON.toJSONString(intensities);
-//        HbaseDAO.addData("laserscan", rowKey, "laser", "range", range);
-//        HbaseDAO.addData("laserscan", rowKey, "laser", "intensity", intensity);
+        HbaseDAO.addData("laserscan", rowKey, "laser", "range", range);
+        HbaseDAO.addData("laserscan", rowKey, "laser", "intensity", intensity);
     }
 
 

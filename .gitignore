@@ -32,6 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+###Customelize###
+
 /laserclient/src/main/resources/static/echarts.js
 /laserclient/src/main/resources/static/sockjs.min.js
 /laserclient/src/main/resources/static/jquery.min.js
